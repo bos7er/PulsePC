@@ -1,0 +1,63 @@
+name: Build PulsePC EXE
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Prepare folders
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force pulsepc, assets, tests | Out-Null
+
+          foreach ($file in @('__init__.py','core.py','registry.py','ui.py')) {
+            if (Test-Path $file) {
+              Copy-Item $file "pulsepc/$file" -Force
+            }
+          }
+
+          foreach ($file in @('pulsepc.ico','pulsepc.png')) {
+            if (Test-Path $file) {
+              Copy-Item $file "assets/$file" -Force
+            }
+          }
+
+          foreach ($file in @('test_core.py','test_registry.py')) {
+            if (Test-Path $file) {
+              Copy-Item $file "tests/$file" -Force
+            }
+          }
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pyinstaller
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Build PulsePC.exe
+        run: |
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name PulsePC --icon assets/pulsepc.ico --add-data "assets;assets" main.py
+
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: PulsePC-Windows
+          path: dist/PulsePC.exe
