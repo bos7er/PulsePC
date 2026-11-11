@@ -1,0 +1,25 @@
+PulsePC 1.1 — JAK POBRAĆ GOTOWY PROGRAM .EXE
+==============================================
+
+OPCJA A: GITHUB (gotowy EXE bez instalowania Pythona u odbiorcy)
+1. Wgraj zawartość folderu PulsePC na GitHub (instrukcje w README.md).
+2. Otwórz repozytorium -> Actions -> Build Windows EXE -> Run workflow.
+3. Po zakończeniu wejdź w wykonany przebieg -> Artifacts.
+4. Pobierz PulsePC-Windows i rozpakuj: dostaniesz PulsePC.exe.
+5. Jeśli chcesz bezpośredni plik EXE w Releases, użyj tagu v1.1.0
+   (opis w README.md).
+
+OPCJA B: WŁASNY KOMPUTER WINDOWS
+1. Zainstaluj Python 3.10+.
+2. Rozpakuj folder PulsePC i dwukrotnie uruchom build.bat.
+3. Wynik znajdziesz w folderze dist\PulsePC.exe.
+
+CO ROBI MODUŁ REJESTR WINDOWS?
+- Pokazuje autostart bieżącego użytkownika.
+- Wyłącza wybrany wpis tylko po Twoim zatwierdzeniu.
+- Zapisuje kopię bezpieczeństwa .reg PRZED zmianą.
+- Pozwala przywrócić wyłączony wpis.
+- Nie czyści losowych kluczy rejestru i nie wymaga administratora.
+
+Nie wyłączaj wpisów, których działania nie znasz.
+Pełne instrukcje i uwagi: README.md
