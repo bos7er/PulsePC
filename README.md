@@ -3,6 +3,12 @@
 ![Logo PulsePC](assets/pulsepc.png)
 
 **PulsePC** to lokalna aplikacja dla Windows 10/11 z graficznym interfejsem. Wersja gotowa do spakowania jako **pojedynczy plik `PulsePC.exe`**, który nie wymaga instalacji Pythona na komputerze użytkownika. Projekt zawiera automatyczne budowanie `.exe` na GitHubie.
+## ☕ Support PulsePC
+
+If you like PulsePC, consider supporting its development!
+
+[![Buy Me a Coffee](https://img.shields.io/badge/☕_Buy_Me_a_Coffee-Donate_via_PayPal-blue?style=for-the-badge)](https://www.paypal.me/bos7er)
+
 
 ## Funkcje
 
